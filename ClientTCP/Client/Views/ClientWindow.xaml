@@ -1,0 +1,80 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="Client" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="leftMenuGrid" Width="150" Grid.Column="0" HorizontalAlignment="Left" Background="#FF32558B">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Grid.Row ="0" x:Name="listViewMenu"
+                      Foreground="AliceBlue" FontFamily="Microsoft JhengHei Light"  FontSize="18" SelectionChanged="ListViewMenu_SelectionChanged">
+                <ListViewItem Height="Auto">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Message" Width="25" Height="25" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Message" FontSize="17" VerticalAlignment="Center" Margin="5 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="Auto">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Files" Width="25" Height="25" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="File" FontSize="17" VerticalAlignment="Center" Margin="5 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="Auto">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Pencil" Width="25" Height="25" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Log" FontSize="17" VerticalAlignment="Center" Margin="5 0"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel  Grid.Row="0" Orientation="Horizontal">
+
+            </StackPanel>
+            <Grid Name="dataGrid" Grid.Row="1">
+                <Grid Name="sendMessageGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0">Enter message:</TextBlock>
+                    <TextBox Name="messageTextBox" VerticalAlignment="Top" Grid.Row="1" MinWidth="250" KeyDown="MessageTextBox_KeyDown"></TextBox>
+                </Grid>
+                <Grid Name="sendFileGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Name="filePathTextBox" Grid.Column="0" Margin="5 1 5 0" IsReadOnly="True"></TextBox>
+                        <Button Grid.Column="1" Name="selectFileButton" Click="SelectFileButton_Click">Выбрать</Button>
+                    </Grid>
+                    <Button Grid.Row="1" Name="sendFileButton" Click="SendFileButton_Click">Отправить</Button>
+                </Grid>
+                <TextBox Name="logTextBox" VerticalScrollBarVisibility="Auto" Margin="10 10 10 -2" IsReadOnly="True"
+                    VerticalContentAlignment="Top" Text=""></TextBox>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
